@@ -14,11 +14,11 @@
 
 克隆Trinity源码:
 
-    ```
+```
     git clone https://github.com/trinity-project/trinity.git [User-Path]
-    ```
 
     * `User-Path`： 用户指定的目录
+```
 
 
 ## Trinity 运行环境准备工作
