@@ -12,11 +12,8 @@
 
 ## Trinity 源码包获取
 
-    克隆Trinity源码:
-
-        ```
-        git clone https://github.com/trinity-project/trinity.git [User-Path]
-        ```
+克隆Trinity源码:
+`git clone https://github.com/trinity-project/trinity.git [User-Path]`
 
         * User-Path： 用户指定的目录
 
