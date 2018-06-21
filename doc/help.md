@@ -16,8 +16,7 @@
 
 ```
     git clone https://github.com/trinity-project/trinity.git [User-Path]
-
-    * `User-Path`： 用户指定的目录
+      * User-Path： 用户指定的目录
 ```
 
 
@@ -40,61 +39,52 @@
 
 * `Python3.6 运行环境`
 
+```
     安装python3.6
 
         添加python3.6安装包
 
-            ```
             sudo apt-get install software-properties-common
             sudo add-apt-repository ppa:jonathonf/python-3.6
 
             sudo apt-get update
-            ```
 
         安装python3.6
 
-            ```
             sudo apt-get install python3.6 python3.6-dev
-            ```
 
-        安装pip3.6
+    安装pip3.6
 
-            ```
-            wget https://bootstrap.pypa.io/get-pip.py
-            python3.6 get-pip.py
-            ```
+        wget https://bootstrap.pypa.io/get-pip.py
+        python3.6 get-pip.py
 
     安装virtualenv
 
-        ```
         pip3.6 install virtualenv
-        ```
 
     安装Trinity运行所依赖的python库：
 
         进入trinity源码所在的目录，通过pip3.6安装lib库
 
-            ```
             pip3.6 install -r requirements
-            ```
+```
 
-3. 启动系统服务
+* `启动系统服务`
 
+```
     启动mongodb数据库服务
 
-        ```
         sudo service mongod start
-        ```
+```
 
-4. 系统环境变量设置
+* `系统环境变量设置`
 
+```
     在某些特定系统中，需要设置PYTHONPATH。（若运行Trinity服务过程中，出现找不到文件的问题，可以尝试本节内容）
-
     进入Trinity源码所在目录，执行以下命令，或者将下述命令添加到.bashrc 文件中
 
-    ```
     export PYTHONPATH=$PWD
-    ```
+```
 
 
 ## Trinity 网关节点部署
