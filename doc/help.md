@@ -12,22 +12,22 @@
 
 ## Trinity 源码包获取
 
+```
 克隆Trinity源码:
 
- `git clone https://github.com/trinity-project/trinity.git [User-Path]`
+git clone https://github.com/trinity-project/trinity.git [User-Path]
 
-  * `User-Path`： 用户指定的目录
+ * `User-Path`： 用户指定的目录
+```
 
 
 ## Trinity 运行环境准备工作
 
 1. Ubuntu 1604桌面版或服务器版；
 
-    安装系统库
+安装系统库
 
-        ```
-        sudo apt-get install libleveldb-dev libssl-dev g++
-        ```
+`sudo apt-get install libleveldb-dev libssl-dev g++`
 
     安装mongodb
 
