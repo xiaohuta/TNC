@@ -16,7 +16,7 @@
 
 ```
     git clone https://github.com/trinity-project/trinity.git [User-Path]
-      * User-Path： 用户指定的目录
+      * User-Path： 用户指定的目录。若是用户没有指定目录，克隆目录默认目录为当前目录下的trinity文件夹。本文讲解使用默认文件夹
 ```
 
 
@@ -89,13 +89,46 @@
 
 ## Trinity 网关节点部署
 
-配置
-打开trinity/gateway/config.py文件，配置 cg_public_ip_port字段值的ip地址部分为自己节点的公网ip地址，端口号不变。
-
-进入trinity/gateway目录，执行如下命令启动trinity 网络节点：
+* `修改配置文件`
 
 ```
-python3.6 start.py -->null &
+    主链网关配置
+
+        执行`cd ./trinity/gateway`命令，使用vim或者gedit打开config.py文件，将`cg_public_ip_port`中ip地址部分配置为用户自己的公网。
+        如果用户需要，可以更改端口号（系统默认：8089），但不可使用8766端口。
+
+
+    测试链网关配置
+
+        同 "主链网关配置"
+```
+
+* `运行`
+
+```
+    在主链和测试网上，网管运行的命令相同，使用下列命令集合即可：
+
+        screen -S <User-specified-name>
+        python3.6 start.py &
+
+        * User-specified-name: 用户指定名称。
+
+        若需要退出当前screen，可使用`ctrl+a+d`退出。
+
+        若需要重连已创建的screen进程，可使用`screen -r User-specified-name`
+```
+
+* `使用python虚拟环境`
+
+```
+    用户可根据个人喜好，使用virtualenv建立干净的python3.6环境，专用于trinity节点(网关和钱包节点)的运行，具体步骤如下
+
+        创建python3.6虚拟环境
+            virtualenv -p /usr/bin/python3.6 venv
+            source venv/bin/activate
+            pip install -r requirements
+
+        参考`运行`章节中的内容，启动网关节点。
 ```
 ## Trinity CLI 钱包部署
 
