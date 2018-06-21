@@ -3,8 +3,8 @@
 ## 试用指引索引
 0. Trinity 源码包获取
 1. Trinity 运行环境准备工作
-2. Trinity 网络节点部署
-3. Trinity CLI 钱包部署
+2. Trinity 网关节点部署
+3. Trinity 钱包节点部署
 4. TestNet TNC水龙头
 5. Trinity 网络浏览器
 6. Channel交互
@@ -12,32 +12,33 @@
 
 ## Trinity 源码包获取
 
-```
 克隆Trinity源码:
 
-git clone https://github.com/trinity-project/trinity.git [User-Path]
+    ```
+    git clone https://github.com/trinity-project/trinity.git [User-Path]
+    ```
 
- * User-Path： 用户指定的目录
-```
+    * `User-Path`： 用户指定的目录
+
 
 ## Trinity 运行环境准备工作
 
-1. Ubuntu 1604桌面版或服务器版；
+* `Ubuntu 1604桌面版或服务器版`
 
-安装系统库
+```
+    安装系统库
 
-`sudo apt-get install libleveldb-dev libssl-dev g++`
+        sudo apt-get install screen libleveldb-dev libssl-dev g++
 
     安装mongodb
 
-        ```
         sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
         echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
 
         sudo apt-get install mongodb-org
-        ```
+```
 
-2. Python3.6 运行环境
+* `Python3.6 运行环境`
 
     安装python3.6
 
@@ -87,7 +88,7 @@ git clone https://github.com/trinity-project/trinity.git [User-Path]
 
 4. 系统环境变量设置
 
-    在某些特定系统中，需要设置PYTHON_PATH。（若运行Trinity服务过程中，出现找不到文件的问题，可以尝试本节内容）
+    在某些特定系统中，需要设置PYTHONPATH。（若运行Trinity服务过程中，出现找不到文件的问题，可以尝试本节内容）
 
     进入Trinity源码所在目录，执行以下命令，或者将下述命令添加到.bashrc 文件中
 
@@ -96,10 +97,9 @@ git clone https://github.com/trinity-project/trinity.git [User-Path]
     ```
 
 
-## Trinity 网络节点部署
+## Trinity 网关节点部署
 
-
-
+配置
 打开trinity/gateway/config.py文件，配置 cg_public_ip_port字段值的ip地址部分为自己节点的公网ip地址，端口号不变。
 
 进入trinity/gateway目录，执行如下命令启动trinity 网络节点：
