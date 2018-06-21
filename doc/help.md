@@ -16,7 +16,7 @@
 
 ```
     git clone https://github.com/trinity-project/trinity.git [User-Path]
-      * `User-Path`： 用户指定的目录。若是用户没有指定目录，克隆目录默认目录为当前目录下的trinity文件夹。
+      * User-Path： 用户指定的目录。若是用户没有指定目录，克隆目录默认目录为当前目录下的trinity文件夹。
 ```
 
 
@@ -102,7 +102,7 @@
         screen -S <User-specified-name>
         python3.6 start.py &
 
-        * `User-specified-name`: 用户指定名称。
+        * User-specified-name: 用户指定名称。
 
         若需要退出当前screen，可使用`ctrl+a+d`退出。
 
@@ -127,20 +127,36 @@
 
     主链钱包节点配置
 
-        进入trinity/wallet目录，打开configure.py文件，通过修改Configure属性的Fee字段的值来设置该钱包节点的路由手续费，当前默认收取0.01TNC的手续费。
+        进入trinity/wallet目录，打开configure.py文件。
+
+        修改Configure属性的Fee字段的值来设置该钱包节点的路由手续费。默认收取0.01TNC的手续费。
+
+        修改Configure属性的AssetType中TNC对应的值为0x08e8c4400f1af2c20c28e0018f29535eb85d15b6。
+
+        将Configure属性的BlockChain的值替换为下列数据：
+            "RPCClient":"http://localhost:10332", # neocli client json-rpc
+            "NeoUrlEnhance": "http://47.93.214.2:21332",
+            "NeoNetUrl" : "http://47.93.214.2:10332"
+
+        进入lightwallet目录中，打开Settings.py文件。
+
+        将setup_mainnet函数中的self.NODEURL = "http://main:" 替换为self.NODEURL = "http://47.93.214.2:21332":
+
 
     测试网钱包节点配置
 
-        进入trinity/wallet目录，打开configure.py文件，通过修改Configure属性的Fee字段的值来设置该钱包节点的路由手续费，当前默认收取0.01TNC的手续费。
+        进入trinity/wallet目录，打开configure.py文件。
+        通过修改Configure属性的Fee字段的值来设置该钱包节点的路由手续费。默认收取0.01TNC的手续费。
 
 #### 运行
+
     主链钱包
 
         python3.6 prompt.py -m
 
     测试网钱包
 
-        python3.6 prompt.py -m
+        python3.6 prompt.py
 
 
 可根据个人喜好，选择使用python虚拟环境。参考：Trinity 网关节点部署中关于虚拟环境的章节内容。
@@ -186,3 +202,6 @@ trinity CLI钱包区块同步完成之后，即可在钱包控制台进行钱包
 4. 使用channel tx命令进行状态通道的链下交易操作。
 
 5. 使用channel close命令进行状态通道的结算删除工作。
+
+注意：
+    当前软件版本在创建通道时，TNC押金数量是以$800美金的价格计算。假设当前TNC价值$1美金，那最低需要800个TNC才能保障通道建立成功。
