@@ -1,8 +1,8 @@
 # Trinity Beta V0.2版本试用指引
 
 ## 试用指引索引
-0. 运行环境
-1. Trinity 源码包获取
+0. Trinity 源码包获取
+1. Trinity 运行环境准备工作
 2. Trinity 网络节点部署
 3. Trinity CLI 钱包部署
 4. TestNet TNC水龙头
@@ -10,70 +10,98 @@
 6. Channel交互
 
 
-## 运行环境
+## Trinity 源码包获取
+
+    克隆Trinity源码:
+
+        ```
+        git clone https://github.com/trinity-project/trinity.git [User-Path]
+        ```
+
+        * User-Path： 用户指定的目录
+
+
+## Trinity 运行环境准备工作
 
 1. Ubuntu 1604桌面版或服务器版；
 
     安装系统库
+
         ```
         sudo apt-get install libleveldb-dev libssl-dev g++
         ```
 
     安装mongodb
-        ```
-        sudo apt-get install mongodb-org
-        ```
 
-    启动mongdb服务
         ```
-        sudo service mongod start
+        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+        echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+
+        sudo apt-get install mongodb-org
         ```
 
 2. Python3.6 运行环境
 
     安装python3.6
-        添加
+
+        添加python3.6安装包
+
+            ```
+            sudo apt-get install software-properties-common
+            sudo add-apt-repository ppa:jonathonf/python-3.6
+
+            sudo apt-get update
+            ```
+
+        安装python3.6
+
+            ```
+            sudo apt-get install python3.6 python3.6-dev
+            ```
+
+        安装pip3.6
+
+            ```
+            wget https://bootstrap.pypa.io/get-pip.py
+            python3.6 get-pip.py
+            ```
+
+    安装virtualenv
+
+        ```
+        pip3.6 install virtualenv
+        ```
+
+    安装Trinity运行所依赖的python库：
+
+        进入trinity源码所在的目录，通过pip3.6安装lib库
+
+            ```
+            pip3.6 install -r requirements
+            ```
+
+3. 启动系统服务
+
+    启动mongodb数据库服务
+
+        ```
+        sudo service mongod start
+        ```
+
+4. 系统环境变量设置
+
+    在某些特定系统中，需要设置PYTHON_PATH。（若运行Trinity服务过程中，出现找不到文件的问题，可以尝试本节内容）
+
+    进入Trinity源码所在目录，执行以下命令，或者将下述命令添加到.bashrc 文件中
+
     ```
-    sudo apt-get install mongodb-org
+    export PYTHONPATH=$PWD
     ```
 
-
-## Trinity 源码包获取
-
-通过访问如下链接获取Trinity CLI钱包源码包:
-
-```
-git clone https://github.com/trinity-project/trinity.git
-```
-
-通过以下命令部署Trinity 的依赖环境：
-```
-sudo apt-get install python3.6 python3.6-dev python3.6-venv python3-pip libleveldb-dev libssl-dev g++
-```
-
-进入Trinity目录，通过以下命令安装Trinity 的依赖包：
-
-```
-pip3.6 install -r requirements
-```
-
-进入Trinity目录,通过以下命令配置python环境变量:
-
-```
-export PYTHONPATH=$PWD
-```
-安装mongodb数据库
-
-```
-sudo apt-get install -y mongodb-org
-```
-启动mondodb数据库
-
-```
-sudo service mongod start
-```
 
 ## Trinity 网络节点部署
+
+
 
 打开trinity/gateway/config.py文件，配置 cg_public_ip_port字段值的ip地址部分为自己节点的公网ip地址，端口号不变。
 
